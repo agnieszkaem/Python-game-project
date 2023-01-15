@@ -1,5 +1,8 @@
 
 def get_positive_int(txt):
+    """
+    gets input and returns a positive integer number from a player
+    """
     while True:
         while True:
             num = input(txt)
@@ -11,6 +14,9 @@ def get_positive_int(txt):
     return n
 
 def get_key(txt):
+    """
+    gets an input and returns a key indicated by the player to open the next stage
+    """
     print("I suppose you posses a key to another place. Then, select the key to the place you want to visit!")
     while True:
         x = get_positive_int(txt)
@@ -20,6 +26,9 @@ def get_key(txt):
 
 
 def give_non_empty_str(txt):
+    """
+    gets input as non-empty string and returns it if valid
+    """
     
     while True:
         data=input(txt)
