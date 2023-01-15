@@ -27,7 +27,7 @@ def fight(player_health):
             enemy_health=0
         if player_health<0:
             player_health=0
-        print(f"State of health:\nYou: {player_health}\nEnemy: {enemy_health}")  
+        print(f"State of health after {damage_enemy} damage:\nYou: {player_health}\nEnemy: {enemy_health}")  
         
      
     if player_health>0:

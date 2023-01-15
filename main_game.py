@@ -8,7 +8,7 @@ def game():
     player_health = 100
 
     name = user_input.give_non_empty_str("What's your name?:\n")
-    print(f"Hello {name}! Welcome in the game <Lost Forest>!")
+    print(f"Hello {name}! Welcome to the game <Lost Forest>!")
     files.read_file("rules.txt")
 
     while True:
@@ -52,10 +52,12 @@ def game():
             x= game_board.riddle()
             if x:
                 print("Wait...")
-                time.sleep(2)
                 files.read_img("win_img.jpg")
+                time.sleep(2)
                 print("You have won the game!")
             else:
+                files.read_img("lost_img.jpg")
+                time.sleep(2)
                 print("GAME OVER")
 
         break
