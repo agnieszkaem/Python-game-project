@@ -9,7 +9,7 @@ def game():
 
     name = user_input.give_non_empty_str("What's your name?:\n")
     print(f"Hello {name}! Welcome to the game <Lost Forest>!")
-    files.read_file("intro.txt")
+    #files.read_file("intro.txt")
 
     while True:
 

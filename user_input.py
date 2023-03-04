@@ -37,4 +37,3 @@ def give_non_empty_str(txt):
     return data
 
 
-#.

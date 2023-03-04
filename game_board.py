@@ -167,84 +167,65 @@ def enemy_case(next_pos,player_health):
 
 
 def make_move(board, move,player_health):
+
+
+
+
+
     """
     The function is responsible for moving the player around the board 
     and calling the appropriate functions depending on the player's position
     """
     global player
-    
     p_row, p_col = player_position()
+
+    def take_action(player_health,row_change,col_change):
+        next_pos =place_player(row_change,col_change, player)
+        if next_pos in ENEMIES:
+            player_health= enemy_case(next_pos,player_health)
+
+        if next_pos in CHESTS:
+            x = board_elements.drop()
+            CHESTS.remove(next_pos)
+            player_health+=x
+
+        board[row_change][col_change]='X'  #marking a player's position 
+        write_show(board,p_row,p_col)
+
+
+
     while True:
         if move == UP and is_valid_move(board,move):
-            next_pos =place_player(p_row-1,p_col, player)
-            if next_pos in ENEMIES:
-
-                player_health= enemy_case(next_pos,player_health)
-
-
-            if next_pos in CHESTS:
-                x = board_elements.drop()
-                CHESTS.remove(next_pos)
-                player_health+=x
-
-            board[p_row-1][p_col]='X'  #marking a player's position 
-            write_show(board,p_row,p_col)
-            
+            row_change = p_row-1
+            col_change = p_col
+            take_action(player_health,row_change,col_change)
             break
 
 
         elif move == DOWN and is_valid_move(board,move):
-            next_pos =place_player(p_row+1,p_col, player)
-            if next_pos in ENEMIES:
-                player_health=  enemy_case(next_pos,player_health)
-
-
-            if next_pos in CHESTS:
-                x = board_elements.drop()
-                CHESTS.remove(next_pos)
-                player_health+=x
-
-            board[p_row+1][p_col]='X'
-            write_show(board,p_row,p_col)
-            
+            row_change = p_row+1
+            col_change = p_col
+            take_action(player_health,row_change,col_change)
             break
 
 
         elif move == LEFT and is_valid_move(board,move):
-            next_pos =place_player(p_row,p_col-1, player)
-            if next_pos in ENEMIES:
-                player_health=  enemy_case(next_pos,player_health)
-
-
-            if next_pos in CHESTS:
-                x = board_elements.drop()
-                CHESTS.remove(next_pos)
-                player_health+=x    
-
-            board[p_row][p_col-1]='X'
-            write_show(board,p_row,p_col)
-            #return player_health
+            row_change = p_row
+            col_change = p_col-1
+            take_action(player_health,row_change,col_change)
             break
 
 
         elif move == RIGHT and is_valid_move(board,move):
-            next_pos =place_player(p_row,p_col+1, player)
-            if next_pos in ENEMIES:
-                player_health=  enemy_case(next_pos,player_health)
-
-            if next_pos in CHESTS:
-                x = board_elements.drop()
-                CHESTS.remove(next_pos)
-                player_health+=x 
-            
-            board[p_row][p_col+1]='X'
-            write_show(board,p_row,p_col)
+            row_change = p_row
+            col_change = p_col+1
+            take_action(player_health,row_change,col_change)
             break
 
         else:
             print("invalid move")
             break
-
+    
     return player_health    
 
 
